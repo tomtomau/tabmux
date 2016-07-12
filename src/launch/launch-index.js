@@ -1,5 +1,6 @@
 import { PageService } from './services/page-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { NewPage } from './new-page';
 
 export class LaunchIndex {
     inputEl = null;
@@ -8,11 +9,12 @@ export class LaunchIndex {
 
     adding = false;
 
-    static inject = [ PageService, EventAggregator ];
+    static inject = [ PageService, EventAggregator, Element ];
 
-    constructor(pageService, eventAggregator) {
+    constructor(pageService, eventAggregator, element) {
         this.pageService = pageService;
         this.eventAggregator = eventAggregator;
+        this.element = element;
     }
 
     bind() {
@@ -21,6 +23,12 @@ export class LaunchIndex {
             window.setTimeout(() => {
                 document.querySelector('#focus-load').focus()
             }, 1);
+        });
+
+
+        this.element.addEventListener(NewPage.EVENT_NAME, e => {
+            this.pageService.addPage(e.detail.page);
+            this.adding = false;
         });
     }
 

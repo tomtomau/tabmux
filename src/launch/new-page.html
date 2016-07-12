@@ -1,8 +1,9 @@
 <template>
     <div class="form-group">
-        <input type="text" class="form-input" placeholder="url" id="focus-load">
+        <input type="text" class="form-input" placeholder="url" id="focus-load" value.bind="url">
     </div>
     <div class="form-group">
-        <input type="text" class="form-input" placeholder="tags">
+        <input type="text" class="form-input" placeholder="tags" value.bind="tags">
     </div>
+    <a href="javascript:void(0)" class="btn btn-primary" click.delegate="save()">save</a>
 </template>

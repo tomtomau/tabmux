@@ -1,16 +1,5 @@
-class Page {
-    constructor(url, tags) {
-        this.url = url;
-        this.tags = tags;
-    }
-}
-
-class ScoredPage extends Page {
-    constructor(page, score) {
-        super(page.url, page.tags);
-        this.score = score;
-    }
-}
+import { Page } from '../model/page';
+import { ScoredPage } from '../model/scored-page';
 
 export class PageService {
     constructor() {
@@ -35,5 +24,9 @@ export class PageService {
         let matches = tokens.filter(token => -1 !== page.tags.indexOf(token) || page.tags.filter(tag => tag.startsWith(token)).length);
 
         return new ScoredPage(page, matches.length);
+    }
+
+    addPage(page) {
+        this.pages.push(page);
     }
 }
