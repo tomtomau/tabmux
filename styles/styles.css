@@ -37,6 +37,7 @@ input[type=text] {
 
 .tmux-list .tmux-row > div {
   display: table-cell;
+  padding-bottom: 10px;
 }
 
 .launch-container {
@@ -53,4 +54,23 @@ input[type=text] {
   background: #37d637;
   color: white;
   border-color: #37d637;
+}
+
+.tag-list {
+  display: block;
+  margin-top: 5px;
+}
+
+.chip-sm {
+  background: #186118;
+  color: white;
+  margin-right: 3px;
+}
+
+.chip-sm:hover, .chip-sm:focus, .chip-sm:active {
+  background: #186118;
+}
+
+.chip-sm .chip-name {
+  margin: 0;
 }

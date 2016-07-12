@@ -23,7 +23,7 @@ export class NewPage {
         let event = new CustomEvent(NewPage.EVENT_NAME, {
             bubbles: true,
             detail: {
-                page: new Page(this.url, this.tags)
+                page: new Page(this.url, this.tags.replace(",", " ").split(" ").filter(x => x.length))
             }
         });
 

@@ -1,11 +1,15 @@
 import { Page } from '../model/page';
 import { ScoredPage } from '../model/scored-page';
+import { LocalStore } from './local-store';
 
 export class PageService {
-    constructor() {
-        this.pages = [
-            new Page("https://news.ycombinator.com/", [ "news", "ycombinator" ]),
-        ];
+    static STORAGE_KEY = "pages";
+    static inject = [ LocalStore ];
+    pages = [];
+
+    constructor(localStore) {
+        this.localStore = localStore;
+        this.pull();
     }
 
     suggestPages(query) {
@@ -14,7 +18,7 @@ export class PageService {
         let pages = this.pages
             .map(page => this.score(tokenize, page))
             .filter(page => page.score > 0)
-            .sort((a, b) => b.score - a.score)
+            .sort((a, b) => b.score - a.score);
 
         return pages;
     }
@@ -28,5 +32,33 @@ export class PageService {
 
     addPage(page) {
         this.pages.push(page);
+        this.push();
+    }
+
+    deletePage(page) {
+        let index = this.pages.indexOf(page);
+
+        if (-1 !== index) {
+            this.pages.splice(index, 1);
+            this.push();
+        }
+    }
+
+    /**
+     * Push the current state
+     */
+    push() {
+        this.localStore.saveJSON(PageService.STORAGE_KEY, this.pages);
+    }
+
+    pull() {
+        let storedPages = this.localStore.getJSON(PageService.STORAGE_KEY);
+
+        if (null !== storedPages && Array.isArray(storedPages)) {
+            // Convert out
+            this.pages = storedPages.map(j => new Page(j.url, j.tags));
+        } else {
+            this.pages = [];
+        }
     }
 }

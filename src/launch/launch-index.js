@@ -36,12 +36,23 @@ export class LaunchIndex {
         this.inputEl.focus();
 
         this.inputEl.addEventListener('keyup', e => {
-            if (this.search.length > 2) {
-                this.suggest();
-            } else {
-                this.suggestions = [];
-            }
+            this._triggerSearch();
         });
+    }
+
+    _triggerSearch() {
+        if (this.search.length > 2) {
+            this.suggest();
+        } else if (this.search === "?") {
+            this.suggestions = this.pageService.pages;
+        } else {
+            this.suggestions = [];
+        }
+    }
+
+    delete(suggestion) {
+        this.pageService.deletePage(suggestion);
+        this._triggerSearch();
     }
 
     suggest() {

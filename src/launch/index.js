@@ -1,3 +1,3 @@
 export function configure(config) {
-    config.globalResources('./launch-index', './new-page');
+    config.globalResources('./launch-index', './new-page', './tags');
 }

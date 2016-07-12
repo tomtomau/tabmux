@@ -25,12 +25,14 @@
                     .plugin('aurelia-mousetrap', function (config) {
                         // Example keymap
                         config.set('keymap', {
+                            "/":    "KS_SEARCH",
                             "ctrl+b c": "KS_NEW",
                             "ctrl+b 1": "SELECT_1",
                             "ctrl+b 2": "SELECT_2",
                         });
                         config.set('preventDefault', true);
                     })
+                    .plugin('aurelia-return-trigger')
                     .feature('launch')
             ;
 
