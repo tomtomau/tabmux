@@ -38,3 +38,19 @@ input[type=text] {
 .tmux-list .tmux-row > div {
   display: table-cell;
 }
+
+.launch-container {
+  margin-top: 15px;
+}
+
+.btn.btn-primary {
+  background: none;
+  color: #37d637;
+  border-color: #37d637;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
+  background: #37d637;
+  color: white;
+  border-color: #37d637;
+}

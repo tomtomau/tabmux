@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Aurelia</title>
     <!--The FontAwesome version is locked at 4.6.3 in the package.json file to keep this from breaking.-->
     <link rel="stylesheet" href="jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+</head>
 
-  <body>
+<body>
+<div class="container launch-container">
     <launch-index></launch-index>
+</div>
 
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-      SystemJS.import('aurelia-bootstrapper').then(function(bootstrapper) {
-        bootstrapper.bootstrap(function(aurelia){
-          aurelia.use
-                  .defaultBindingLanguage()
-                  .defaultResources()
-                  .developmentLogging()
-                  .plugin('aurelia-mousetrap', function(config) {
-                      // Example keymap
-                      config.set('keymap', {
-                        "/": "KS_SEARCH",
-                        "ctrl+b 1": "SELECT_1",
-                        "ctrl+b 2": "SELECT_2",
-                    });
-                  })
-                  .feature('launch')
-          ;
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+<script>
+    SystemJS.import('aurelia-bootstrapper').then(function (bootstrapper) {
+        bootstrapper.bootstrap(function (aurelia) {
+            aurelia.use
+                    .defaultBindingLanguage()
+                    .defaultResources()
+                    .developmentLogging()
+                    .plugin('aurelia-mousetrap', function (config) {
+                        // Example keymap
+                        config.set('keymap', {
+                            "ctrl+b c": "KS_NEW",
+                            "ctrl+b 1": "SELECT_1",
+                            "ctrl+b 2": "SELECT_2",
+                        });
+                        config.set('preventDefault', true);
+                    })
+                    .feature('launch')
+            ;
 
-          aurelia.start().then(function(){ aurelia.enhance() });
+            aurelia.start().then(function () {
+                aurelia.enhance()
+            });
         });
-      });
-    </script>
-  </body>
+    });
+</script>
+</body>
 </html>

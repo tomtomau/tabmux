@@ -1,14 +1,27 @@
 import { PageService } from './services/page-service';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 export class LaunchIndex {
     inputEl = null;
     search = "";
     suggestions = [];
 
-    static inject = [ PageService ];
+    adding = false;
 
-    constructor(pageService) {
+    static inject = [ PageService, EventAggregator ];
+
+    constructor(pageService, eventAggregator) {
         this.pageService = pageService;
+        this.eventAggregator = eventAggregator;
+    }
+
+    bind() {
+        this.eventAggregator.subscribe("KS_NEW", e => {
+            this.add();
+            window.setTimeout(() => {
+                document.querySelector('#focus-load').focus()
+            }, 1);
+        });
     }
 
     attached() {
@@ -25,5 +38,9 @@ export class LaunchIndex {
 
     suggest() {
         this.suggestions = this.pageService.suggestPages(this.search);
+    }
+
+    add() {
+        this.adding = true;
     }
 }
