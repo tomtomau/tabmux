@@ -14,6 +14,7 @@ System.config({
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-rc.1.0.0",
     "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0-rc.1.0.0",
     "aurelia-logging-console": "npm:aurelia-logging-console@1.0.0-rc.1.0.0",
+    "aurelia-mousetrap": "npm:aurelia-mousetrap@0.1.3",
     "aurelia-pal-browser": "npm:aurelia-pal-browser@1.0.0-rc.1.0.0",
     "aurelia-polyfills": "npm:aurelia-polyfills@1.0.0-rc.1.0.0",
     "aurelia-router": "npm:aurelia-router@1.0.0-rc.1.0.0",
@@ -114,6 +115,11 @@ System.config({
     "npm:aurelia-metadata@1.0.0-rc.1.0.0": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-rc.1.0.0"
     },
+    "npm:aurelia-mousetrap@0.1.3": {
+      "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.0-rc.1.0.0",
+      "aurelia-framework": "npm:aurelia-framework@1.0.0-rc.1.0.1",
+      "mousetrap": "npm:mousetrap@1.5.3"
+    },
     "npm:aurelia-pal-browser@1.0.0-rc.1.0.0": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-rc.1.0.0"
     },
@@ -185,6 +191,9 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:mousetrap@1.5.3": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:process@0.11.5": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

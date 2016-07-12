@@ -8,23 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-  <body aurelia-app="main">
-    <div class="splash">
-      <div class="message">Aurelia Navigation Skeleton</div>
-      <i class="fa fa-spinner fa-spin"></i>
-    </div>
+  <body>
+    <launch-index></launch-index>
 
-    <!-- The bluebird version is locked at 4.6.3 in the package.json file to keep this from breaking -->
-    <!-- We include bluebird to bypass Edge's very slow Native Promise implementation. The Edge team -->
-    <!-- has fixed the issues with their implementation with these fixes being distributed with the  -->
-    <!-- Windows 10 Anniversary Update on 2 August 2016. Once that update has pushed out, you may    -->
-    <!-- consider removing bluebird from your project and simply using native promises if you do     -->
-    <!-- not need to support Internet Explorer.                                                      -->
-    <script src="jspm_packages/npm/bluebird@3.4.1/js/browser/bluebird.min.js"></script>
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
     <script>
-      System.import('aurelia-bootstrapper');
+      SystemJS.import('aurelia-bootstrapper').then(function(bootstrapper) {
+        bootstrapper.bootstrap(function(aurelia){
+          aurelia.use
+                  .defaultBindingLanguage()
+                  .defaultResources()
+                  .developmentLogging()
+                  .plugin('aurelia-mousetrap', function(config) {
+                      // Example keymap
+                      config.set('keymap', {
+                        "/": "KS_SEARCH",
+                        "ctrl+b 1": "SELECT_1",
+                        "ctrl+b 2": "SELECT_2",
+                    });
+                  })
+                  .feature('launch')
+          ;
+
+          aurelia.start().then(function(){ aurelia.enhance() });
+        });
+      });
     </script>
   </body>
 </html>

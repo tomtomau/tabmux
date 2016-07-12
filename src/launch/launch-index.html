@@ -1,0 +1,22 @@
+<template>
+    <div class="form-group">
+        <input type="text" class="form-input mousetrap" placeholder="search: git mono" ref="inputEl" value.bind="search">
+    </div>
+
+    <div if.bind="suggestions.length <= 0">
+        <p>type to search for pages</p>
+    </div>
+
+    <div class="tmux-list">
+        <div class="tmux-row" repeat.for="suggestion of suggestions">
+            <div>
+                (${$index+1})
+            </div>
+            <div>
+                <a href.bind="suggestion.url" mousetrap-click.bind="'SELECT_' + ($index+1)">${suggestion.url}</a>
+            </div>
+        </div>
+    </div>
+
+
+</template>
