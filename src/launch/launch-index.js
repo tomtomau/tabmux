@@ -25,11 +25,33 @@ export class LaunchIndex {
             }, 1);
         });
 
+        this.eventAggregator.subscribe("KS_GOOGLE", e => {
+            this.google();
+        });
+
+        this.eventAggregator.subscribe("KS_GO", e => {
+            this.go();
+        });
 
         this.element.addEventListener(NewPage.EVENT_NAME, e => {
             this.pageService.addPage(e.detail.page);
             this.adding = false;
         });
+    }
+
+    google() {
+        if (this.search.length > 0) {
+            let encoded = encodeURI(this.search);
+
+            window.location.href = `http://google.com/search?q=${encoded}`;
+        }
+    }
+
+    go() {
+        if (this.search.length > 0) {
+            // TODO: Prefix with http :(
+            window.location.href = this.search;
+        }
     }
 
     attached() {

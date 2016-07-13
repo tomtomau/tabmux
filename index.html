@@ -21,15 +21,21 @@
             aurelia.use
                     .defaultBindingLanguage()
                     .defaultResources()
-                    .developmentLogging()
+                    //.developmentLogging()
                     .plugin('aurelia-mousetrap', function (config) {
-                        // Example keymap
-                        config.set('keymap', {
+                        let keymap = {
                             "/":    "KS_SEARCH",
                             "ctrl+b c": "KS_NEW",
-                            "ctrl+b 1": "SELECT_1",
-                            "ctrl+b 2": "SELECT_2",
-                        });
+                            "ctrl+b g": "KS_GOOGLE",
+                            "ctrl+b enter": "KS_GO"
+                        };
+
+                        for (let i = 0; i < 10; i++) {
+                            keymap[`ctrl+b ${i}`] = `SELECT_${i}`;
+                        }
+
+                        // Example keymap
+                        config.set('keymap', keymap);
                         config.set('preventDefault', true);
                     })
                     .plugin('aurelia-return-trigger')
