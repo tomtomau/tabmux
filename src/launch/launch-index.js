@@ -33,6 +33,12 @@ export class LaunchIndex {
             this.go();
         });
 
+        this.eventAggregator.subscribe("KS_ESCAPE", e => {
+            if (this.adding) {
+                this.adding = false;
+            }
+        });
+
         this.element.addEventListener(NewPage.EVENT_NAME, e => {
             this.pageService.addPage(e.detail.page);
             this.adding = false;
