@@ -1,3 +1,7 @@
+dependencies:
+  post:
+    - npm install -g shipit-cli
+
 test:
   override:
     - "[[ 'fred' = 'fred' ]]"
@@ -6,4 +10,5 @@ deployment:
   master:
     branch: master
     commands:
+      - gulp export
       - shipit production deploy
