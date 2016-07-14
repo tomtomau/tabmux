@@ -1,0 +1,9 @@
+test:
+  override:
+    - "[[ 'fred' = 'fred' ]]"
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - shipit production deploy
